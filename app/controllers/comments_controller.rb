@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
 
     if @comment.save
-      redirect_to [@post, @comment]
+      redirect_to post_path(@post)
     else 
       render :new
     end
@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:name)
+    params.require(:comment).permit(:message)
   end
 
 
