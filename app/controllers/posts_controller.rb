@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :set_user
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = current_user.posts
@@ -30,17 +31,32 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to user_posts_path(current_user)
+    redirect_to root_path
+  end
+
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
+
   end
 
   private
+
+  def set_post
+    @post = current_user.posts.find(params[:id])
+
+  end
 
    def set_user
     @user = current_user
    end
 
    def post_params
-     params.require(:post).permit(:content, :user_id)
+     params.require(:post).permit(:content)
    end
 
 end

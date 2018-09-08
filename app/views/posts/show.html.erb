@@ -1,2 +1,8 @@
-
+<hr />
+<p>What would you like to do?</p>
+<%= link_to 'View Posts', posts_path %>
+<br />
+<%= link_to 'Edit Post', edit_post_path(@user) %>
+<br />
+<%= link_to 'Delete Post', @post, method: :delete %>
   
