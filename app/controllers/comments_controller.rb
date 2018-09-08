@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :set_post
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
   def index
     @comments =Comment.all
@@ -9,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.new
     render partial: "form"
   end
 
@@ -18,10 +19,10 @@ class CommentsController < ApplicationController
   end
 
   def create 
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.new(comment_params)
 
     if @comment.save
-      redirect_to post_comments(@post)
+      redirect_to [@post, @comment]
     else 
       render :new
     end
@@ -33,10 +34,16 @@ class CommentsController < ApplicationController
   end
 
   private
-  
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
-    params.require(:artist).permit(:name)
+    params.require(:comment).permit(:name)
   end
 
 

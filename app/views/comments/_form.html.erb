@@ -1,6 +1,6 @@
-<h1><%= posts_comments(@post) ? 'Edit Comment' : 'Create comment' %></h1>
+<h1><%= @comment.id ? 'Edit Comment' : 'Create comment' %></h1>
 <hr />
-<%= form_for @comment do |i| %>
+<%= form_for [@post, @comment] do |i| %>
   <%= i.label :message %>
   <%= i.text_field :message, require: true, autofocus: true %>
   <%= i.submit %>
