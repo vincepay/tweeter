@@ -8,7 +8,7 @@ class BiosController < ApplicationController
 
   def create
     
-    @bio = current_user.bio.new(bio_params)
+    @bio = current_user.bios.new(bio_params)
     if @bio.save
       redirect_to user_bio_path
     else

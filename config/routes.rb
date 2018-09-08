@@ -3,15 +3,16 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users do
-    resources :posts do
-      scope "posts/:posts_id", as: "posts" do
-        resources :comments, only: [:new, :create]
-      end
-    end
-
     resources :bios, only:[:new, :create, :show]
   end
+  
+  resources :posts, except:[:create] do
+    # scope "posts/:posts_id", as: "posts" do
+    resources :comments, only: [:new, :create]
+    # end
+  end
 
+  post '/posts/:user_id', to: 'posts#create', as: 'new_user_post'
 
 =begin
 /users/user_id/

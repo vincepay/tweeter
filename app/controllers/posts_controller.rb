@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_user
+
   def index
     @posts = current_user.posts
   end
@@ -34,6 +36,10 @@ class PostsController < ApplicationController
   private
    def set_post
     @post = current_user.posts.find(params[:id])
+   end
+
+   def set_user
+    @user = User.find(params[:user_id])
    end
 
    def post_params
