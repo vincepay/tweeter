@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   
   resources :posts, except:[:create] do
-    # scope "posts/:posts_id", as: "posts" do
+    #scope "posts/:posts_id", as: "posts" do
     resources :comments, only: [:new, :create]
     # end
   end
