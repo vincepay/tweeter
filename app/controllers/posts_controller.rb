@@ -25,7 +25,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
     render partial: "form"
   end
 
