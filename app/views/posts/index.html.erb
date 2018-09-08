@@ -1,6 +1,6 @@
 <h1>Posts</h1>
 
-<%= link_to 'Create a Post', new_user_posts_path %>
+<%= link_to 'Create a Post', new_post_path %>
 <ul>
 <% @posts.each do |post| %>
     <li><%= link_to post.content, post %></li>
