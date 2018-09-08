@@ -2,7 +2,8 @@
 <p>What would you like to do?</p>
 <%= link_to 'View Posts', posts_path %>
 <br />
-<%= link_to 'Edit Post', edit_post_path(@user) %>
+<%= link_to 'Edit Post', edit_post_path(@post) %>
 <br />
 <%= link_to 'Delete Post', @post, method: :delete %>
-  
+<br />
+<%= link_to 'Add Comment', new_post_comment_path(@post) %>
