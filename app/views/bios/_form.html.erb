@@ -1,0 +1,11 @@
+<h1><%= @bio.id ? 'Edit Bio' : 'Create Bio' %></h1>
+<hr />
+<%= form_for [current_user, @bio] do |f| %>
+  <%= f.label :profile_image %>
+  <%= f.text_field :profile_image %>
+  <br />
+  <%= f.label :description %>
+  <%= f.text_area :description, required: true %>
+  <br />
+  <%= f.submit %>
+<% end %>
