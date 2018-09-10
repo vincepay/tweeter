@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   def index
     @comments =Comment.all
   end
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
 
     if @comment.save
-      redirect_to post_path(@post)
+      redirect_to [@post, @comment]
     else 
       render :new
     end
